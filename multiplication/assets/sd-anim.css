@@ -1,0 +1,111 @@
+/* 屏幕端入场动画：打印 / 导出 PDF 时保持静态 */
+@keyframes sd-rise {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes sd-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes sd-pop {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes sd-slide {
+  from { opacity: 0; transform: translate3d(-14px, 0, 0); }
+  to { opacity: 1; transform: none; }
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  .slidev-page h1 {
+    animation: sd-rise 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .slidev-page h2 {
+    animation: sd-rise 0.5s 0.06s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .slidev-page .cover-mark {
+    animation: sd-pop 0.65s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .slidev-page .kicker {
+    animation: sd-fade 0.45s 0.12s ease both;
+  }
+
+  .slidev-page .toc-row,
+  .slidev-page .card,
+  .slidev-page .step,
+  .slidev-page .q-block,
+  .slidev-page .note-box,
+  .slidev-page .warn-box,
+  .slidev-page .tip-card,
+  .slidev-page .takeaway,
+  .slidev-page .insight,
+  .slidev-page .formula,
+  .slidev-page .big-line,
+  .slidev-page .mini-table,
+  .slidev-page .bar {
+    animation: sd-rise 0.48s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    animation-delay: 0.14s;
+  }
+
+  .slidev-page .toc-row:nth-child(2),
+  .slidev-page .cards > :nth-child(2),
+  .slidev-page .two-col > :nth-child(2),
+  .slidev-page .steps > :nth-child(2),
+  .slidev-page .q-block:nth-child(2) {
+    animation-delay: 0.22s;
+  }
+
+  .slidev-page .toc-row:nth-child(3),
+  .slidev-page .cards > :nth-child(3),
+  .slidev-page .two-col > :nth-child(3),
+  .slidev-page .steps > :nth-child(3),
+  .slidev-page .q-block:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .slidev-page .toc-row:nth-child(4),
+  .slidev-page .cards > :nth-child(4),
+  .slidev-page .q-block:nth-child(4) {
+    animation-delay: 0.38s;
+  }
+
+  .slidev-page .toc-row:nth-child(5),
+  .slidev-page .q-block:nth-child(5) {
+    animation-delay: 0.46s;
+  }
+
+  .slidev-page .calc-line {
+    animation: sd-slide 0.36s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .slidev-page .calc-line:nth-child(2) { animation-delay: 0.06s; }
+  .slidev-page .calc-line:nth-child(3) { animation-delay: 0.12s; }
+  .slidev-page .calc-line:nth-child(4) { animation-delay: 0.18s; }
+  .slidev-page .calc-line:nth-child(5) { animation-delay: 0.24s; }
+  .slidev-page .calc-line:nth-child(6) { animation-delay: 0.3s; }
+  .slidev-page .calc-line:nth-child(7) { animation-delay: 0.36s; }
+}
+
+@media print {
+  .slidev-page *,
+  .slidev-page *::before,
+  .slidev-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slidev-page *,
+  .slidev-page *::before,
+  .slidev-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
