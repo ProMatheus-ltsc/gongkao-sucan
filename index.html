@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>资料分析速算 · 课件总入口</title>
+  <style>
+    :root {
+      --ink: #0f1a30;
+      --ink2: #16233e;
+      --line: #2a3c60;
+      --amber: #e8a33d;
+      --amber-d: #c2842a;
+      --text: #eef2f8;
+      --muted: #a9b8d2;
+      --muted2: #7f90ae;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background-color: var(--ink);
+      background-image:
+        radial-gradient(900px 500px at 85% -10%, rgba(232, 163, 61, 0.16), transparent 60%),
+        linear-gradient(rgba(42, 60, 96, 0.35) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42, 60, 96, 0.35) 1px, transparent 1px);
+      background-size: auto, 56px 56px, 56px 56px;
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 64px 28px 48px;
+    }
+
+    header { max-width: 760px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      color: var(--amber);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--amber);
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      font-size: clamp(38px, 6vw, 62px);
+      line-height: 1.15;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .meta span {
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      padding: 5px 12px;
+      background: rgba(22, 35, 62, 0.7);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 44px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(26, 42, 72, 0.95), rgba(18, 30, 54, 0.95));
+      color: inherit;
+      text-decoration: none;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(420px 220px at 100% 0%, rgba(232, 163, 61, 0.12), transparent 65%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    .card:hover,
+    .card:focus-visible {
+      transform: translateY(-4px);
+      border-color: var(--amber);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+      outline: none;
+    }
+
+    .card:hover::after,
+    .card:focus-visible::after { opacity: 1; }
+
+    .card-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .num {
+      font-family: "Noto Serif SC", "Songti SC", serif;
+      font-size: 46px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--amber);
+      opacity: 0.9;
+    }
+
+    .pages {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--muted2);
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      padding: 4px 10px;
+    }
+
+    .card h2 {
+      margin: 18px 0 8px;
+      font-family: "Noto Serif SC", "Songti SC", serif;
+      font-size: 28px;
+      letter-spacing: 0.03em;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 18px 0 24px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tags li {
+      font-size: 11px;
+      color: #c6d0e4;
+      background: rgba(42, 60, 96, 0.45);
+      border-radius: 4px;
+      padding: 4px 8px;
+    }
+
+    .go {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--amber);
+      letter-spacing: 0.04em;
+    }
+
+    .go::after {
+      content: "→";
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover .go::after { transform: translateX(4px); }
+
+    .order {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 26px;
+      font-size: 12px;
+      color: var(--muted2);
+    }
+
+    .order b { color: var(--amber); font-weight: 700; }
+
+    .order .line {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .annot {
+      margin-top: 44px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(26, 42, 72, 0.9), rgba(16, 27, 48, 0.9));
+      padding: 30px 30px 26px;
+    }
+
+    .annot h2 {
+      margin: 0 0 6px;
+      font-family: "Noto Serif SC", "Songti SC", serif;
+      font-size: 26px;
+      letter-spacing: 0.03em;
+    }
+
+    .annot .sub {
+      margin: 0 0 22px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .steps li {
+      position: relative;
+      padding: 16px 16px 14px;
+      border: 1px solid rgba(42, 60, 96, 0.9);
+      border-radius: 10px;
+      background: rgba(15, 26, 48, 0.55);
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .steps li::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      display: block;
+      margin-bottom: 8px;
+      font-family: "Noto Serif SC", "Songti SC", serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--amber);
+    }
+
+    .steps b { color: var(--text); font-weight: 700; }
+
+    .steps code {
+      font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11.5px;
+      color: #c6d0e4;
+      background: rgba(42, 60, 96, 0.4);
+      border-radius: 4px;
+      padding: 1px 5px;
+      word-break: break-all;
+    }
+
+    .cmd {
+      margin-top: 18px;
+      border: 1px solid rgba(42, 60, 96, 0.9);
+      border-radius: 10px;
+      background: rgba(8, 14, 26, 0.85);
+      padding: 14px 16px;
+      overflow-x: auto;
+    }
+
+    .cmd pre {
+      margin: 0;
+      font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12.5px;
+      line-height: 1.85;
+      color: #d7e0f0;
+    }
+
+    .cmd .c { color: var(--muted2); }
+
+    .annot .tip {
+      margin: 14px 0 0;
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--muted2);
+    }
+
+    .annot .tip a {
+      color: var(--amber);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(232, 163, 61, 0.45);
+    }
+
+    .annot .tip a:hover {
+      border-bottom-color: var(--amber);
+    }
+
+    footer {
+      margin-top: 44px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--muted2);
+    }
+
+    kbd {
+      display: inline-block;
+      min-width: 20px;
+      padding: 2px 6px;
+      border: 1px solid var(--line);
+      border-bottom-width: 2px;
+      border-radius: 4px;
+      background: var(--ink2);
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .wrap { padding: 40px 20px; }
+      .cards { grid-template-columns: 1fr; }
+      .card { padding: 22px; }
+      .annot { padding: 22px 20px; }
+      .steps { grid-template-columns: 1fr; }
+      h1 { font-size: 38px; }
+      .num { font-size: 38px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="eyebrow">公考加油站 · 资料分析</div>
+      <h1>速算两件套</h1>
+      <p class="lead">乘法与除法，是资料分析里最耗时的两步。两套课件各 19 页，按「先乘后除」的顺序讲，每套都带课堂互动与随机加练。</p>
+      <div class="meta">
+        <span>20 题 / 25 分钟</span>
+        <span>75 秒一题</span>
+        <span>计算预算 35–45 秒</span>
+        <span>面向大学生 / 上班族</span>
+      </div>
+    </header>
+
+    <section class="cards">
+      <a class="card" href="./multiplication/">
+        <div class="card-top">
+          <div class="num">01</div>
+          <div class="pages">19 页 · 交互版</div>
+        </div>
+        <h2>乘法与乘方</h2>
+        <p>从「会算」到「算得够快」：拆分、凑整、交叉相乘、百化分，以及平方表与连乘近似。</p>
+        <ul class="tags">
+          <li>乘法四法</li>
+          <li>平方三招</li>
+          <li>90 秒口算</li>
+          <li>随机加练</li>
+        </ul>
+        <span class="go">进入课件</span>
+      </a>
+
+      <a class="card" href="./division/">
+        <div class="card-top">
+          <div class="num">02</div>
+          <div class="pages">19 页 · 交互版</div>
+        </div>
+        <h2>除法估算</h2>
+        <p>从「会除」到「除得准」：选项定精度、截位直除、化除为乘、分数比较，以及四类高频列式。</p>
+        <ul class="tags">
+          <li>六种形态</li>
+          <li>截位直除</li>
+          <li>化除为乘</li>
+          <li>分数比较</li>
+        </ul>
+        <span class="go">进入课件</span>
+      </a>
+    </section>
+
+    <div class="order">
+      <span>建议顺序：<b>01 乘法</b> → <b>02 除法</b></span>
+      <span class="line"></span>
+      <span>每套约 45–60 分钟</span>
+    </div>
+
+    <section class="annot">
+      <h2>课堂批注 + 一起导出 PDF</h2>
+      <p class="sub">讲到哪、写到哪。线上版也能导出：批注和幻灯片叠在同一页，不用再合成。</p>
+
+      <ol class="steps">
+        <li><b>开画笔</b><br>演示时点左下角工具条上的铅笔图标，即可在任意一页手写、画线。数字 <b>1–7</b> 换颜色，<b>S</b> 笔 / <b>L</b> 直线 / <b>R</b> 矩形 / <b>E</b> 椭圆，<b>Esc</b> 退出。</li>
+        <li><b>自动存档</b><br>批注自动保存在当前浏览器里（线上版也一样），刷新或关掉页面都不会丢，下一节课接着写。</li>
+        <li><b>导出带批注的 PDF</b><br>点幻灯片右下角的 <b>「导出 PDF」</b>，在导出页点 <b>PDF</b>，浏览器打印时选「另存为 PDF」即可。GitHub Pages 线上版同样可用。</li>
+      </ol>
+
+      <div class="cmd">
+        <pre><span class="c"># 也可以在本机课件目录直接导出（含批注）</span>
+cd 除法估算-slidev
+npm install         <span class="c"># 首次</span>
+npm run export:pdf  <span class="c"># 含批注</span></pre>
+      </div>
+
+      <p class="tip">在线导出：<a href="./multiplication/#/export">乘法课件</a> · <a href="./division/#/export">除法课件</a>。网址用 <b>#/</b> 路由，刷新不会 404。线上批注只留在你自己的浏览器，学生在自己设备上打开看到的是干净课件；把批注版导出成 PDF 发给学生即可。</p>
+    </section>
+
+    <footer>
+      <span><kbd>→</kbd> 翻页</span>
+      <span><kbd>←</kbd> 后退</span>
+      <span><kbd>?</kbd> 总览</span>
+      <span><kbd>p</kbd> 演讲者模式</span>
+      <span>课件内备注在演讲者视图查看</span>
+    </footer>
+  </main>
+</body>
+</html>
