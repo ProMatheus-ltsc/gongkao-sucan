@@ -1,0 +1,1 @@
+var e=``+new URL(`../img/cube_10975249_0.png`,import.meta.url).href,t=``+new URL(`../img/cube_10975249_1.png`,import.meta.url).href,n=``+new URL(`../img/cube_10975249_2.png`,import.meta.url).href;export{t as n,e as r,n as t};

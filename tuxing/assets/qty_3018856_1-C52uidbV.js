@@ -1,0 +1,1 @@
+var e=``+new URL(`../img/qty_3018856_0.png`,import.meta.url).href,t=``+new URL(`../img/qty_3018856_1.png`,import.meta.url).href;export{e as n,t};
