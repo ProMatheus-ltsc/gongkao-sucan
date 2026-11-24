@@ -1,0 +1,1 @@
+var e=``+new URL(`../img/cube_5697923_stem_1.png`,import.meta.url).href;export{e as t};

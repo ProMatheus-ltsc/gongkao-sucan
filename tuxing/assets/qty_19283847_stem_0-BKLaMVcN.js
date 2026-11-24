@@ -1,0 +1,1 @@
+var e=``+new URL(`../img/qty_19283847_stem_0.png`,import.meta.url).href;export{e as t};
